@@ -1,0 +1,24 @@
+Private Sub cmdLogin_Click()
+
+	Dim db As DAO.Database
+	Dim rst As DAO.Recordset
+	Dim strSQL As String
+
+'Query to check if login details are correct
+srtSQL = "SELECT UserLogin FROM tblUser WHERE LoginID =""" & Me.txtLoginID.Value & """ AND Password = """ &
+Me.txtPassword.Value & """"
+
+Set db = CurrentDb
+Set rst = db.OpenRecordset(strSQL)
+
+If rst.EOF Then
+	MsgBox "Wrong credentials! Try again.", vbOKOnly + vbInformation, "Login Error"
+Else
+	MsgBox "Hello, " & rst.Fields(0).Value & ".", vbOKOnly + vbInformation, "Login Successful"
+
+End If
+
+Set db = Nothing
+Set rst = Nothing
+
+End Sub

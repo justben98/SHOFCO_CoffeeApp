@@ -1,0 +1,19 @@
+
+Private Sub LoginBtn_Click()
+If IsNull(Me.txtLoginID) Then
+    MsgBox "Please enter LoginID", vbInformation, "LoginID Required"
+    Me.txtLoginID.SetFocus
+ElseIf IsNull(Me.txtPassword) Then
+    MsgBox "Please enter Password", vbInformation, "Password Required"
+    Me.txtPassword.SetFocus
+Else
+    'Login Process
+    If (IsNull(DLookup("User", "tblUser", "User ='" & Me.txtLoginID.Value & "'"))) Or _
+    (IsNull(DLookup("Password", "tblUser", "Password ='" & Me.txtPassword.Value & "'"))) Then
+        MsgBox "Incorrect LoginID or Password"
+    Else
+        MsgBox "Login Successful!"
+
+    End If
+End If
+End Sub
